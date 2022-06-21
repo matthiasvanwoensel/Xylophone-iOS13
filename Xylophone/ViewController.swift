@@ -11,11 +11,24 @@ import AVFoundation
 
 class ViewController: UIViewController {
     
+    
     var player: AVAudioPlayer?
     
     
     @IBAction func keyPressed(_ sender: UIButton) {
+        
+        // change opacity
+        sender.alpha = 0.5
+        
+        // change back after 0.2 seconds delay
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+              //Bring's sender's opacity back up to fully opaque.
+              sender.alpha = 1.0
+        }
+        
         playSound(soundName: sender.currentTitle!)
+        
+       
     }
     
 
