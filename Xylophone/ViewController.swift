@@ -15,7 +15,6 @@ class ViewController: UIViewController {
     
     
     @IBAction func keyPressed(_ sender: UIButton) {
-        print("hiii")
         playSound()
     }
     
@@ -27,20 +26,11 @@ class ViewController: UIViewController {
     
     
     func playSound() {
-        guard let path = Bundle.main.path(forResource: "C", ofType:"wav") else {
-            return }
+        let url = Bundle.main.url(forResource: "C", withExtension: "wav")
+        player = try! AVAudioPlayer(contentsOf: url!)
+        player?.play()
         
-        let url = URL(fileURLWithPath: path)
-
-        do {
-            player = try AVAudioPlayer(contentsOf: url)
-            player?.play()
-            
-        } catch let error {
-            print(error.localizedDescription)
-        }
     }
-    
 
 }
 
